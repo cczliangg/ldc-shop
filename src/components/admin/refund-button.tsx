@@ -110,7 +110,7 @@ export function RefundButton({ order }: { order: any }) {
     }
 
     const handleMarkDone = async () => {
-        if (!confirm(t('admin.orders.refundVerify'))) return
+        if (!confirm(t('admin.orders.refundVerifyPlatform'))) return
 
         setLoading(true)
         try {
