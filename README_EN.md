@@ -23,7 +23,7 @@ A robust, serverless virtual goods shop built with **Next.js 16**, **Vercel Post
 - **Orders & Delivery**:
     - ✅ **Payment Callback Verification**: Signature and amount checks.
     - 🎁 **Auto Delivery**: Card key delivery on payment; paid status retained if out of stock.
-    - 🔒 **Stock Reservation**: 1-minute hold after entering checkout to prevent oversell.
+    - 🔒 **Stock Reservation**: 5-minute hold after entering checkout to prevent oversell.
     - ⏱️ **Auto-Cancel**: Unpaid orders are cancelled after 5 minutes and stock is released.
     - 🧾 **Order Center**: Order list and details pages.
     - 🔔 **Pending Order Alert**: Homepage banner reminds users of unpaid orders.
