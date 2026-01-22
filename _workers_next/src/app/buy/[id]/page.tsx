@@ -30,18 +30,11 @@ export default async function BuyPage({ params }: BuyPageProps) {
         { revalidate: CACHE_TTL_SECONDS, tags: [TAG_RATINGS] }
     )()
 
-    const getCachedRating = () => unstable_cache(
-        async () => getProductRating(id),
-        ["product-rating", id],
-        { revalidate: CACHE_TTL_SECONDS, tags: [TAG_RATINGS] }
-    )()
-
     // Run all queries in parallel for better performance
-    const [session, product, reviews, rating, emailSettings] = await Promise.all([
+    const [session, product, reviews, emailSettings] = await Promise.all([
         auth(),
         getCachedProduct().catch(() => null),
         getCachedReviews().catch(() => []),
-        getCachedRating().catch(() => ({ average: 0, count: 0 })),
         getEmailSettings().catch(() => ({ apiKey: null, fromEmail: null, enabled: false, fromName: null }))
     ])
 
@@ -67,8 +60,8 @@ export default async function BuyPage({ params }: BuyPageProps) {
             lockedStockCount={product.locked || 0}
             isLoggedIn={!!session?.user}
             reviews={reviews}
-            averageRating={rating.average}
-            reviewCount={rating.count}
+            averageRating={Number(product.rating || 0)}
+            reviewCount={Number(product.reviewCount || 0)}
             canReview={userCanReview.canReview}
             reviewOrderId={userCanReview.orderId}
             emailEnabled={!!(emailSettings?.enabled && emailSettings?.apiKey && emailSettings?.fromEmail)}

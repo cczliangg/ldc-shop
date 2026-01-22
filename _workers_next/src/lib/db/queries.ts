@@ -2,6 +2,7 @@ import { db } from "./index";
 import { products, cards, orders, settings, reviews, loginUsers, categories, userNotifications, wishlistItems, wishlistVotes } from "./schema";
 import { eq, sql, desc, and, asc, gte, or, inArray } from "drizzle-orm";
 import { revalidateTag } from "next/cache";
+import { cache } from "react";
 
 // Database initialization state
 let dbInitialized = false;
@@ -644,7 +645,9 @@ export async function getProduct(id: string) {
             purchaseLimit: products.purchaseLimit,
             purchaseWarning: products.purchaseWarning,
             stock: sql<number>`COALESCE(${products.stockCount}, 0)`,
-            locked: sql<number>`COALESCE(${products.lockedCount}, 0)`
+            locked: sql<number>`COALESCE(${products.lockedCount}, 0)`,
+            rating: sql<number>`COALESCE(${products.rating}, 0)`,
+            reviewCount: sql<number>`COALESCE(${products.reviewCount}, 0)`
         })
             .from(products)
             .where(eq(products.id, id))
@@ -737,14 +740,14 @@ export async function getRecentOrders(limit: number = 10) {
 }
 
 // Settings
-export async function getSetting(key: string): Promise<string | null> {
+export const getSetting = cache(async (key: string): Promise<string | null> => {
     const result = await db.select({ value: settings.value })
         .from(settings)
         .where(eq(settings.key, key));
     return result[0]?.value ?? null;
-}
+});
 
-export async function getAllSettings(): Promise<Record<string, string>> {
+export const getAllSettings = cache(async (): Promise<Record<string, string>> => {
     try {
         const rows = await db.select({ key: settings.key, value: settings.value }).from(settings);
         return rows.reduce((acc, row) => {
@@ -758,7 +761,7 @@ export async function getAllSettings(): Promise<Record<string, string>> {
         }
         throw error;
     }
-}
+});
 
 export async function setSetting(key: string, value: string): Promise<void> {
     await db.insert(settings)
