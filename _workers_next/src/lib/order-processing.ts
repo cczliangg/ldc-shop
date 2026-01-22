@@ -31,7 +31,7 @@ export async function processOrderFulfillment(orderId: string, paidAmount: numbe
             // best effort
         }
         try {
-            revalidateTag('home:products');
+            revalidateTag('home:products', 'max');
         } catch {
             // best effort
         }

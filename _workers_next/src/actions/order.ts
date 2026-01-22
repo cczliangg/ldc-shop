@@ -104,7 +104,7 @@ export async function cancelPendingOrder(orderId: string) {
             }
         }
         try {
-            revalidateTag('home:products')
+            revalidateTag('home:products', 'max')
         } catch {
             // best effort
         }

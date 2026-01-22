@@ -185,12 +185,12 @@ export async function importData(formData: FormData) {
         }
 
         revalidatePath('/admin')
-        revalidateTag('home:products')
-        revalidateTag('home:ratings')
-        revalidateTag('home:categories')
-        revalidateTag('home:announcement')
-        revalidateTag('home:product-categories')
-        revalidateTag('home:visitors')
+        revalidateTag('home:products', 'max')
+        revalidateTag('home:ratings', 'max')
+        revalidateTag('home:categories', 'max')
+        revalidateTag('home:announcement', 'max')
+        revalidateTag('home:product-categories', 'max')
+        revalidateTag('home:visitors', 'max')
         return { success: true, count: successCount, errors: errorCount }
     } catch (e: any) {
         return { success: false, error: e.message }

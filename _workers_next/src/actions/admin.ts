@@ -128,10 +128,10 @@ export async function saveProduct(formData: FormData) {
     revalidatePath('/admin/products')
     revalidatePath('/admin/settings')
     revalidatePath('/')
-    revalidateTag('home:products')
-    revalidateTag('home:ratings')
-    revalidateTag('home:categories')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:ratings', 'max')
+    revalidateTag('home:categories', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function deleteProduct(id: string) {
@@ -140,10 +140,10 @@ export async function deleteProduct(id: string) {
     revalidatePath('/admin/products')
     revalidatePath('/admin/settings')
     revalidatePath('/')
-    revalidateTag('home:products')
-    revalidateTag('home:ratings')
-    revalidateTag('home:categories')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:ratings', 'max')
+    revalidateTag('home:categories', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function toggleProductStatus(id: string, isActive: boolean) {
@@ -152,8 +152,8 @@ export async function toggleProductStatus(id: string, isActive: boolean) {
     revalidatePath('/admin/products')
     revalidatePath('/admin/settings')
     revalidatePath('/')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function reorderProduct(id: string, newOrder: number) {
@@ -162,8 +162,8 @@ export async function reorderProduct(id: string, newOrder: number) {
     revalidatePath('/admin/products')
     revalidatePath('/admin/settings')
     revalidatePath('/')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function addCards(formData: FormData) {
@@ -207,8 +207,8 @@ export async function addCards(formData: FormData) {
     revalidatePath('/admin/settings')
     revalidatePath(`/admin/cards/${productId}`)
     revalidatePath('/')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function deleteCard(cardId: number) {
@@ -241,8 +241,8 @@ export async function deleteCard(cardId: number) {
     revalidatePath('/admin/settings')
     revalidatePath('/admin/cards')
     revalidatePath('/')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function deleteCards(cardIds: number[]) {
@@ -283,8 +283,8 @@ export async function deleteCards(cardIds: number[]) {
     revalidatePath('/admin/settings')
     revalidatePath('/admin/cards')
     revalidatePath('/')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function saveShopName(rawName: string) {
@@ -321,8 +321,8 @@ export async function saveShopName(rawName: string) {
     revalidatePath('/')
     revalidatePath('/admin/products')
     revalidatePath('/admin/settings')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function saveShopDescription(rawDesc: string) {
@@ -337,8 +337,8 @@ export async function saveShopDescription(rawDesc: string) {
     revalidatePath('/')
     revalidatePath('/admin/products')
     revalidatePath('/admin/settings')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function saveShopLogo(logoUrl: string) {
@@ -355,8 +355,8 @@ export async function saveShopLogo(logoUrl: string) {
     revalidatePath('/admin/products')
     revalidatePath('/admin/settings')
     revalidatePath('/admin/settings')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function saveRefundReclaimCards(enabled: boolean) {
@@ -369,7 +369,7 @@ export async function deleteReview(reviewId: number) {
     await checkAdmin()
     await db.delete(reviews).where(eq(reviews.id, reviewId))
     revalidatePath('/admin/reviews')
-    revalidateTag('home:ratings')
+    revalidateTag('home:ratings', 'max')
     revalidatePath('/')
 }
 
@@ -380,8 +380,8 @@ export async function saveLowStockThreshold(raw: string) {
     await setSetting('low_stock_threshold', value)
     revalidatePath('/admin/products')
     revalidatePath('/admin/settings')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function saveCheckinReward(raw: string) {
@@ -391,8 +391,8 @@ export async function saveCheckinReward(raw: string) {
     await setSetting('checkin_reward', value)
     revalidatePath('/admin/products')
     revalidatePath('/admin/settings')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function saveCheckinEnabled(enabled: boolean) {
@@ -401,8 +401,8 @@ export async function saveCheckinEnabled(enabled: boolean) {
     revalidatePath('/admin/products')
     revalidatePath('/admin/settings')
     revalidatePath('/')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function saveNoIndex(enabled: boolean) {
@@ -411,8 +411,8 @@ export async function saveNoIndex(enabled: boolean) {
     revalidatePath('/admin/products')
     revalidatePath('/admin/settings')
     revalidatePath('/')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function saveWishlistEnabled(enabled: boolean) {
@@ -443,8 +443,8 @@ export async function saveShopFooter(footer: string) {
     await setSetting('shop_footer', text)
     revalidatePath('/admin/settings')
     revalidatePath('/')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 const VALID_THEME_COLORS = ['purple', 'indigo', 'blue', 'cyan', 'teal', 'green', 'lime', 'amber', 'orange', 'red', 'rose', 'pink', 'black']
@@ -459,8 +459,8 @@ export async function saveThemeColor(color: string) {
     await setSetting('theme_color', color)
     revalidatePath('/admin/settings')
     revalidatePath('/')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function saveNotificationSettings(formData: FormData) {
@@ -532,9 +532,9 @@ export async function saveCategory(formData: FormData) {
 
     revalidatePath('/admin/categories')
     revalidatePath('/')
-    revalidateTag('home:categories')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:categories', 'max')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }
 
 export async function deleteCategory(id: number) {
@@ -543,7 +543,7 @@ export async function deleteCategory(id: number) {
     await db.delete(categories).where(eq(categories.id, id))
     revalidatePath('/admin/categories')
     revalidatePath('/')
-    revalidateTag('home:categories')
-    revalidateTag('home:products')
-    revalidateTag('home:product-categories')
+    revalidateTag('home:categories', 'max')
+    revalidateTag('home:products', 'max')
+    revalidateTag('home:product-categories', 'max')
 }

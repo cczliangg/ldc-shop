@@ -445,7 +445,7 @@ export async function createOrder(productId: string, quantity: number = 1, email
             // best effort
         }
         try {
-            revalidateTag('home:products')
+            revalidateTag('home:products', 'max')
         } catch {
             // best effort
         }

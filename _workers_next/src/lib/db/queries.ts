@@ -1414,7 +1414,7 @@ export async function recordLoginUser(userId: string, username?: string | null, 
         });
         if ((result as any)?.meta?.changes === 1) {
             try {
-                revalidateTag('home:visitors');
+                revalidateTag('home:visitors', 'max');
             } catch {
                 // best effort
             }
@@ -1441,7 +1441,7 @@ export async function recordLoginUser(userId: string, username?: string | null, 
             });
             if ((result as any)?.meta?.changes === 1) {
                 try {
-                    revalidateTag('home:visitors');
+                    revalidateTag('home:visitors', 'max');
                 } catch {
                     // best effort
                 }
@@ -1555,7 +1555,7 @@ export async function cancelExpiredOrders(filters: { productId?: string; userId?
             // best effort
         }
         try {
-            revalidateTag('home:products');
+            revalidateTag('home:products', 'max');
         } catch {
             // best effort
         }

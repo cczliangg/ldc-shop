@@ -60,7 +60,7 @@ export async function saveAnnouncement(config: AnnouncementConfig) {
     }
     revalidatePath('/')
     revalidatePath('/admin/announcement')
-    revalidateTag('home:announcement')
+    revalidateTag('home:announcement', 'max')
     return { success: true }
 }
 

@@ -93,8 +93,8 @@ export async function submitReview(
         revalidatePath(`/buy/${productId}`)
         revalidatePath(`/order/${orderId}`)
         revalidatePath(`/`)
-        revalidateTag('home:ratings')
-        revalidateTag('home:products')
+        revalidateTag('home:ratings', 'max')
+        revalidateTag('home:products', 'max')
 
         return { success: true }
     } catch (error) {

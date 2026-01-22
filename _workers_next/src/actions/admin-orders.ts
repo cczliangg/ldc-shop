@@ -28,7 +28,7 @@ export async function markOrderPaid(orderId: string) {
     }
   }
   try {
-    revalidateTag('home:products')
+    revalidateTag('home:products', 'max')
   } catch {
     // best effort
   }
@@ -74,7 +74,7 @@ export async function markOrderDelivered(orderId: string) {
     }
   }
   try {
-    revalidateTag('home:products')
+    revalidateTag('home:products', 'max')
   } catch {
     // best effort
   }
@@ -118,7 +118,7 @@ export async function cancelOrder(orderId: string) {
     }
   }
   try {
-    revalidateTag('home:products')
+    revalidateTag('home:products', 'max')
   } catch {
     // best effort
   }
@@ -182,7 +182,7 @@ export async function deleteOrder(orderId: string) {
     }
   }
   try {
-    revalidateTag('home:products')
+    revalidateTag('home:products', 'max')
   } catch {
     // best effort
   }
@@ -208,7 +208,7 @@ export async function deleteOrders(orderIds: string[]) {
     // best effort
   }
   try {
-    revalidateTag('home:products')
+    revalidateTag('home:products', 'max')
   } catch {
     // best effort
   }
@@ -237,7 +237,7 @@ export async function verifyOrderRefundStatus(orderId: string) {
           }
         }
         try {
-          revalidateTag('home:products')
+          revalidateTag('home:products', 'max')
         } catch {
           // best effort
         }
